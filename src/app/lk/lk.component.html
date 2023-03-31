@@ -1,0 +1,5 @@
+<p>lk works!</p><br>
+
+<app-admin *ngIf="currentRole == 'ADMIN'"></app-admin>
+<app-operator *ngIf="currentRole == 'OPERATOR'"></app-operator>
+<app-user *ngIf="currentRole == 'USER'"></app-user>

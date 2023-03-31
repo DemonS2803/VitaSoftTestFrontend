@@ -1,0 +1,29 @@
+<p>admin works!</p>
+
+<h1>Users</h1><br>
+
+<table width="600px" >
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>role</th>
+      <th>action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of currentUsersInTable">
+      <td width="200px">{{user.login}}</td>
+      <td width="200px">{{user.role}}</td>
+      <td width="200px">
+        <button *ngIf="user.role=='USER'" (click)="changeUserRole(user.id, 'OPERATOR')">Сделать Оператором</button>
+        <button *ngIf="user.role=='OPERATOR'" (click)="changeUserRole(user.id, 'USER')">Забрать роль</button>
+        <button *ngIf="user.role=='ADMIN'" >Недостаточно прав</button>
+      </td>
+    </tr>
+  <tr>
+    <button *ngIf="offset > 0" (click)="prevPage()">Prev</button>
+    <button *ngIf="currentUsersInTable.length == 5" (click)="nextPage()">Next</button>
+  </tr>
+  </tbody>
+
+</table>
