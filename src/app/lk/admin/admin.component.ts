@@ -19,7 +19,6 @@ export class AdminComponent implements OnInit{
 
   ngOnInit(): void {
     this.updateUsersInTable(this.offset)
-    this.offset=0;
   }
 
   updateUsersInTable(offset: number) {
@@ -31,7 +30,7 @@ export class AdminComponent implements OnInit{
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': 'true',
-        // 'Authorization': localStorage.getItem("token") || ""
+        'Authorization': localStorage.getItem("token") || ""
       },
       params: params
     }).subscribe({
@@ -60,7 +59,7 @@ export class AdminComponent implements OnInit{
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': 'true',
-        // 'Authorization': localStorage.getItem("token") || ""
+        'Authorization': localStorage.getItem("token") || ""
       }
       // params: params
     }).subscribe({

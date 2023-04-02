@@ -8,6 +8,8 @@ import { UserComponent } from './lk/user/user.component';
 import { OperatorComponent } from './lk/operator/operator.component';
 import {AppRoutingModule} from "./app-routing-module";
 import {HttpClientModule} from "@angular/common/http";
+import {FormsModule} from "@angular/forms";
+import { LoginComponent } from './common/login/login.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,14 @@ import {HttpClientModule} from "@angular/common/http";
     LkComponent,
     AdminComponent,
     UserComponent,
-    OperatorComponent
+    OperatorComponent,
+    LoginComponent
   ],
   imports: [
     HttpClientModule,
     AppRoutingModule,
     BrowserModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

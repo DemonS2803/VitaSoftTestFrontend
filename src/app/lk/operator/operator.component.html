@@ -1,1 +1,43 @@
 <p>operator works!</p>
+
+<div>Search by login: <input type="text" [(ngModel)]="userLoginPart"><button (click)="updateStatementsInTable()">Search</button></div>
+<table width="1000px" style="min-height: 240px">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>User Login</th>
+    <th>Status</th>
+    <th>Created</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let statement of userStatementsInTable">
+    <td width="200px">{{statement.title}}</td>
+    <td width="200px">{{statement.owner.login}}</td>
+    <td width="200px">{{statement.status}}</td>
+    <td width="200px">{{statement.created}}</td>
+    <td width="200px">
+      <button (click)="watchStatement(statement)">Watch</button>
+      <button (click)="handleStatement(true, statement.id)">Accept</button>
+      <button (click)="handleStatement(false, statement.id)">Reject</button>
+    </td>
+  </tr>
+  <tr style="align-content: center">
+    <button *ngIf="offset > 0" (click)="prevPage()">Prev</button>
+    ...Page: {{offset}}...
+    <button *ngIf="offset * 5 <= userStatementsInTable.length" (click)="nextPage()">Next</button>
+  </tr>
+  </tbody>
+
+</table>
+
+<table *ngIf="isOpenedWatchModalDiv" border="1px">
+  <tr>
+    <td width="100px">Title</td>
+    <td width="400px">Content</td>
+  </tr>
+  <td type="text" >{{chosenComponent.title}}</td>
+  <td type="text" >{{chosenComponent.content}}</td>
+</table>

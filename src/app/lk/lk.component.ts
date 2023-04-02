@@ -7,7 +7,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class LkComponent implements OnInit{
 
-  currentRole: string = "ADMIN";
+  currentRole: string = localStorage.getItem("currentRole") || "";
 
   ngOnInit(): void {
 

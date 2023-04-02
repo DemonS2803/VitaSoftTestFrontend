@@ -1,1 +1,61 @@
 <p>user works!</p>
+
+<h1>My statements</h1><br>
+<button (click)="createStatement()">Create new statement</button>
+<div>Sort by: <select (click)="updateStatementsInTable()" [(ngModel)]="sortParam">
+                <option value="id">id</option>
+                <option value="created">creation date</option>
+                <option value="createdrev">creation date (reverse)</option>
+                <option value="title">title</option>
+              </select>
+</div>
+<table width="800px" style="min-height: 240px">
+  <thead>
+  <tr>
+    <th>title</th>
+    <th>Status</th>
+    <th>Created</th>
+    <th>action</th>
+  </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let statement of userStatementsInTable">
+      <td width="200px">{{statement.title}}</td>
+      <td width="200px">{{statement.status}}</td>
+      <td width="200px">{{statement.created}}</td>
+      <td>
+        <button (click)="watchStatement(statement)">Watch</button>
+        <button *ngIf="statement.status=='DRAFT'" (click)="editStatement(statement)">Edit</button>
+        <button *ngIf="statement.status=='DRAFT'" (click)="sendStatementToOperator(statement.id)">Send</button>
+      </td>
+    </tr>
+  <tr style="align-content: center">
+    <button *ngIf="offset > 0" (click)="prevPage()">Prev</button>
+    ...Page: {{offset}}...
+    <button *ngIf="userStatementsInTable.length == 5" (click)="nextPage()">Next</button>
+  </tr>
+  </tbody>
+
+</table>
+<br>
+<div>
+  <div *ngIf="isOpenedEditModalDiv">
+    <input type="text" [textContent]="chosenComponent.title" [(ngModel)]="chosenComponent.title"><br>
+    <textarea type="text" [textContent]="chosenComponent.content" [(ngModel)]="chosenComponent.content"></textarea>
+    <button (click)="sendEditedStatement()">Save changes</button>
+  </div>
+  <div *ngIf="isOpenedCreateModalDiv">
+    <input type="text" id="openedModalTitle" name="openedModalTitle" [(ngModel)]="openedModalTitle"><br>
+    <textarea type="text" id="openedModalContent" name="openedModalContent" [(ngModel)]="openedModalContent"></textarea>
+    <button (click)="sendCreatedStatement()">Create</button>
+  </div>
+  <table *ngIf="isOpenedWatchModalDiv" border="1px">
+    <tr>
+      <td width="100px">Title</td>
+      <td width="400px">Content</td>
+    </tr>
+    <td type="text" >{{chosenComponent.title}}</td>
+    <td type="text" >{{chosenComponent.content}}</td>
+  </table>
+</div>
