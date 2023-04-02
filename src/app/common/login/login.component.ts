@@ -43,6 +43,8 @@ export class LoginComponent {
           console.log(response);
           this.token = response['user'].token;
           console.log(this.token);
+          localStorage.setItem("login", response.user.login)
+          localStorage.setItem("userId", response.user.id)
           localStorage.setItem("token", response.user.token);
           localStorage.setItem("currentRole", response['user'].role)
           this.router.navigate(["lk"]);

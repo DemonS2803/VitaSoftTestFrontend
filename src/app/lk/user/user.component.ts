@@ -16,6 +16,7 @@ export class UserComponent implements OnInit{
   userStatementsInTable: StatementEntity[] = [];
   chosenComponent: StatementEntity = new StatementEntity(0, "", "", "", "", new UserEntity());
   chosenStatementId: number = 0;
+  currentUserId: number = Number(localStorage.getItem("userId")) || 0;
   sortParam: string = "id";
   openedModalTitle: string = "";
   openedModalContent: string = "";
@@ -32,7 +33,7 @@ export class UserComponent implements OnInit{
 
   updateStatementsInTable() {
     let params = new HttpParams();
-    params = params.append('userId', 7);
+    params = params.append('userId', this.currentUserId);
     params = params.append('offset', this.offset);
     params = params.append('limit', 5);
     params = params.append("sortParam", this.sortParam);
@@ -116,7 +117,7 @@ export class UserComponent implements OnInit{
     this.chosenComponent.title = this.openedModalTitle;
     this.chosenComponent.content = this.openedModalContent;
     let params = new HttpParams();
-    params = params.append('userId', 7);
+    params = params.append('userId', this.currentUserId);
     console.log(this.openedModalTitle + " " + this.openedModalContent)
     this.http.post<any>(environment.backendURL + "/api/user/create_statement", JSON.stringify(this.chosenComponent), {
       headers: {

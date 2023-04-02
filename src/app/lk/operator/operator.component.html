@@ -1,6 +1,13 @@
-<p>operator works!</p>
+<p>operator role</p>
 
 <div>Search by login: <input type="text" [(ngModel)]="userLoginPart"><button (click)="updateStatementsInTable()">Search</button></div>
+<div>Sort by: <select (click)="updateStatementsInTable()" [(ngModel)]="sortParam">
+  <option value="id">id</option>
+  <option value="created">creation date</option>
+  <option value="createdrev">creation date (reverse)</option>
+  <option value="title">title</option>
+</select>
+</div>
 <table width="1000px" style="min-height: 240px">
   <thead>
   <tr>
