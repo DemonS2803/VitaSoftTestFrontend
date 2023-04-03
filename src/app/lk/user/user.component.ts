@@ -135,6 +135,7 @@ export class UserComponent implements OnInit{
         console.log(error);
       })
     });
+    this.updateStatementsInTable();
     this.isOpenedCreateModalDiv = false;
   }
 
